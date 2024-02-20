@@ -1,7 +1,6 @@
 import {
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
@@ -22,7 +21,7 @@ const Naviigation = ({ url = "/", title = "Home",onClick }) => (
 );
 
 const Navbar = () => {
-  const isAuthantiate = true;
+  const isAuthantiate = false;
   const user={
     role:"admin",
   }
@@ -30,7 +29,7 @@ const Navbar = () => {
   const [keyWord,setKeyWord]=useState('');
   return (
     <div className="bg-[#F0E8FF] w-full h-14 flex items-center justify-between p-4 drop-shadow-md">
-      <div className="text-xl font-semibold text-gray-700">COURSEHUB</div>
+      <div className="text-xl font-semibold text-gray-700"><Link to="/">COURSEHUB</Link></div>
       <Input value={keyWord} onChange={e=>setKeyWord(e.target.value)} placeholder='Search for anything' type='text' focusBorderColor='black' border={'1px solid green'} w={'90vh'} justifyContent={'center'}/>
       <div>
         <Link to="/login">
@@ -87,12 +86,12 @@ const Navbar = () => {
                   ) : (
                     <>
                       <Link to="/login">
-                        <Button colorScheme="green">Login</Button>
+                        <Button onClick={onClose} colorScheme="green">Login</Button>
                       </Link>
                       <p>OR</p>
 
                       <Link to="/SignUp">
-                        <Button colorScheme="green">SignUp</Button>
+                        <Button onClick={onClose} colorScheme="green">SignUp</Button>
                       </Link>
                     </>
                   )}

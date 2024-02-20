@@ -3,7 +3,7 @@ import { ButtonGroup, Container, Heading, IconButton, Stack, Text } from '@chakr
 import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa'
 const Footer = () => {
   return (
-    <Container padding={'4'} bg="gray" minH={'20vh'} maxW={'235vh'}>
+    <Container padding={'4'} bg="black" textColor={"white"} minH={'20vh'} maxW={'235vh'}>
     <Stack spacing={{ base: '4', md: '5' }}>
       <Stack justify="space-between" direction="row" align="center">
         <Heading>COURCEHUB</Heading>
