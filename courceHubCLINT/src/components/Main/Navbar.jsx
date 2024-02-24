@@ -21,7 +21,7 @@ const Naviigation = ({ url = "/", title = "Home",onClick }) => (
 );
 
 const Navbar = () => {
-  const isAuthantiate = false;
+  const isAuthantiate = true;
   const user={
     role:"admin",
   }
@@ -50,7 +50,6 @@ const Navbar = () => {
               <VStack spacing={"4"} alignItems={"flex-end"}>
                 <Naviigation onClick={onClose} url="/" title="Home" />
                 <Naviigation onClick={onClose} url="/courses" title="Browse All Courses" />
-                <Naviigation onClick={onClose} url="/request" title="Request a Course" />
                 <Naviigation onClick={onClose} url="/contact" title="Contsct Us" />
                 <Naviigation onClick={onClose} url="/about" title="About" />
 

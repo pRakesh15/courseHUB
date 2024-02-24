@@ -8,10 +8,10 @@ const Footer = () => {
       <Stack justify="space-between" direction="row" align="center">
         <Heading>COURCEHUB</Heading>
         <ButtonGroup variant="tertiary">
-          <IconButton as="a" href="https://www.linkedin.com/in/rakesh-pradhan-664808253/" aria-label="LinkedIn" icon={<FaLinkedin />} target={'_blank'} />
-          <IconButton as="a" href="https://github.com/pRakesh15" aria-label="GitHub" icon={<FaGithub />} target={'_blank'} />
+          <IconButton as="a" href="https://www.linkedin.com/in/rakesh-pradhan-664808253/" aria-label="LinkedIn" icon={<FaLinkedin />} target={'blank'} />
+          <IconButton as="a" href="https://github.com/pRakesh15" aria-label="GitHub" icon={<FaGithub />} target={'blank'} />
           <IconButton as="a" href="#" aria-label="Twitter" icon={<FaTwitter />} target={'_blank'} />
-          <IconButton as="a" href="https://www.instagram.com/mr_yiconic_15/" aria-label="Twitter" icon={<FaInstagram />} target={'_blank'} />
+          <IconButton as="a" href="https://www.instagram.com/mr_yiconic_15/" aria-label="Twitter" icon={<FaInstagram />} target={'blank'} />
         </ButtonGroup>
       </Stack>
       <Text fontSize="sm" color="fg.subtle">

@@ -1,5 +1,6 @@
 import { Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const CourseCard = () => {
   const addToCartHandler=()=>
@@ -29,11 +30,13 @@ const CourseCard = () => {
   <Divider />
   <CardFooter>
     <ButtonGroup spacing='2'>
+      <Link to="/subscribe">
       <Button variant='solid' colorScheme='blue'>
         Buy now
       </Button>
+      </Link>
       <Button onClick={addToCartHandler} variant='ghost' colorScheme='blue' >
-        Add to cart
+       Watch Now
       </Button>
     </ButtonGroup>
   </CardFooter>
