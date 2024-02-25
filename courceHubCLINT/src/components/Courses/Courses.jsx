@@ -1,6 +1,6 @@
 import { Button, Container, HStack, Heading, Input, Stack, Text, chakra } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import CourseCard from '../Sub/CourseCard';
+import CourseCard from './CourseCard';
 
 const Courses = () => {
     const catagory=["category1","category2","category3","category4","category5","category6"];

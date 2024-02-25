@@ -36,7 +36,7 @@ const CourseCard = () => {
       </Button>
       </Link>
       <Button onClick={addToCartHandler} variant='ghost' colorScheme='blue' >
-       Watch Now
+       Add to PlayList
       </Button>
     </ButtonGroup>
   </CardFooter>
