@@ -10,16 +10,34 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { MdEdit } from "react-icons/md";
 import { RiDeleteBin7Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
+  const [imgprev,setImgprev]=useState('');
+  const [image,setImage]=useState('');
   const inputRef = useRef(null);
+  //function for chose photos from file...
   const handelImageClick = () => {
     inputRef.current.click();
   };
+  const cahngeImageHandler=(e)=>
+  {
+      const file=e.target.files[0];
+      const reader=new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend=()=>
+      {
+        setImgprev(reader.result);
+        setImage(file);
+      }
+  }
+  // console.log(imgprev)
+  // console.log({image})
+  
+
   const user = {
     name: "Rakes Pradhan",
     age: 23,
@@ -56,7 +74,7 @@ const Profile = () => {
       >
         <VStack>
           <Box display={"flex"} justifyContent={"center"}>
-            <Avatar size={"2xl"} />
+            <Avatar size={"2xl"} src={imgprev} />
             <div onClick={handelImageClick}>
               <MdEdit className="mt-20 cursor-pointer -ml-3 text-3xl" />
               <input
@@ -64,6 +82,7 @@ const Profile = () => {
                 ref={inputRef}
                 p={1.5}
                 accept="image/*"
+                onChange={cahngeImageHandler}
                 className="hidden invisible"
               />
             </div>

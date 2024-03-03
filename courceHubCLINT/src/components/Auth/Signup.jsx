@@ -18,10 +18,11 @@ const Signup = () => {
   const [imgprev,setImgprev]=useState('');
   const [image,setImage]=useState('');
   const inputRef = useRef(null);
+  //function for chose image fromm file
   const handelImageClick = () => {
     inputRef.current.click();
   };
-  //function for chose a image and privew that
+  //function for priview of choosed image
   const changeImageHandler=(e)=>
   {
     const file=e.target.files[0];

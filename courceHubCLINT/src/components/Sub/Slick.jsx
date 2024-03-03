@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import slider1 from "../../assets/images/slide1.jpeg";
 import slider2 from "../../assets/images/slide2.jpg";
-import '../../App.css'
+import './slike.css'
 const Slick = () => {
     const slider = [slider1, slider2];
   var settings = {
@@ -15,7 +15,7 @@ const Slick = () => {
     slidesToScroll: 1,
   };
   return (
-    <div className="px-8 bg-gray-900">
+    <div className="px-8   ">
     <Slider {...settings}>
    {
     slider.map((item,index)=>

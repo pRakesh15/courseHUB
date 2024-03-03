@@ -17,6 +17,10 @@ import Course from './components/Courses/Course'
 import Profile from './components/Profile/Profile'
 import ChangePassword from './components/Profile/ChangePassword'
 import UpdateProfile from './components/Profile/UpdateProfile'
+import Dashboard from './components/Admin/Dashboard/Dashboard'
+import CreateCourse from './components/Admin/CreateCourse'
+import AdminCourse from './components/Admin/AdminCourse'
+import Users from './components/Admin/Users'
 const App = () => {
 
   // window.addEventListener("contextmenu",(e)=>{
@@ -43,6 +47,13 @@ const App = () => {
   <Route path='/paySuccess' exact element={<Paymentsuccess/>}/>
   <Route path='/payFailed' exact element={<PaymentFAiled/>}/>
   <Route path='/*' exact element={<NoteFound/>}/>
+
+   {/*AdminRouts*/}
+
+  <Route path='/admin/dasbord' exact element={<Dashboard/>}/>
+  <Route path='/admin/createcourse' exact element={<CreateCourse/>}/>
+  <Route path='/admin/courses' exact element={<AdminCourse/>}/>
+  <Route path='/admin/users' exact element={<Users/>}/>
 
   </Routes>
   <Footer/>
