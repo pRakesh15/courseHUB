@@ -16,7 +16,7 @@ export const getAllCourses=catchError(async(req,res,next)=>
 export const creeateCourse=catchError(async(req,res,next)=>
 {
    const {title,description,category,createdBy}=req.body;
-   if(!title || !description || !category || !createdBy) return (new ErrorHendler("plz fill all the field",400))
+   if(!title || !description || !category || !createdBy) return next(new ErrorHendler("plz fill all the field",400));
    // const file=req.file;
 
    await Course.create({
