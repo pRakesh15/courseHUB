@@ -7,6 +7,7 @@ import { sendToken } from "../utils/sendToken.js";
 import { Course } from "../models/CourseModal.js";
 import getDataUri from "../utils/dataUri.js";
 import cloudinary from "cloudinary";
+import { States } from "../models/Stats.js";
 
 //function for creating usre..
 //NOTE*- AVATAR IS UPLOADED BY FORENTEND NOW IM USING BACKEND
@@ -16,7 +17,6 @@ export const createUser = catchError(async (req, res, next) => {
   if (!name || !email || !password)
     return next(new ErrorHendler("plz fill all the field", 400));
   let user = await User.findOne({ email });
-
   if (user) return next(new ErrorHendler("User alredy exist", 409));
   const file = req.file;
   const fileUrl = getDataUri(file);
@@ -250,11 +250,51 @@ export const deleteFromList = catchError(async (req, res, next) => {
     });
 });
 
+//Admin function
 //function for find all the user..
-
-export const getAllusers = (req, res, next) => {
-  res.send({
-    status: "success",
-    message: "working",
+export const getAllusers = catchError(async (req, res, next) => {
+  const users = await User.find({});
+  res.status(200).json({
+    success: true,
+    users,
   });
-};
+});
+
+//function for update User Roll..
+export const updateRoll = catchError(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) return next(new ErrorHendler("User not found", 404));
+
+  if (user.role === "user") {
+    await User.findByIdAndUpdate(user._id, {
+      role: "admin",
+    });
+    res.status(200).json({
+      success: true,
+      message: `${user.name} became an admin`,
+    });
+  } else {
+    await User.findByIdAndUpdate(user._id, {
+      role: "user",
+    });
+    res.status(200).json({
+      success: true,
+      message: `${user.name} became a user`,
+    });
+  }
+});
+//function of change  streem
+// User.watch().on("change",async()=>
+// {
+//   const state=await States.find({}).sort({createdAt:"desc"}).limit(1);
+
+//   const subscription=await User.find({"subscription.status":"Active"});
+
+//   state[0].users=await User.countDocuments();
+//   state[0].subscription=subscription.length;
+//   state[0].createdAt=new Date(Date.now());
+
+//   await state[0].save();
+
+
+// })

@@ -62,13 +62,6 @@ const userSchema = mongoose.Schema({
   resetPasswordExppire: String,
 });
 
-//function for creating a token when user register or login..
-// userSchema.methods.getJWTToken = function () {
-//   return Jwt.sign({ id: this._id }, process.env.JWT_SECREATE, {
-//     expiresIn: "15D",
-//   });
-// };
-
 //this is a pre function use for hassing the password..
 
 userSchema.pre("save", function (next) {

@@ -25,3 +25,15 @@ export const isAdminAuthenticate = catchError(async (req, res, next) => {
     );
     next();
 });
+
+export const isSubscribed = catchError(async (req, res, next) => {
+    
+  if (req.user.role !== "admin" && req.user.subscription.status!=="Active")
+    return next(
+      new ErrorHendler(
+        `Subscribe to access this page !!`,
+        403
+      )
+    );
+    next();
+});

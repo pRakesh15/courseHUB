@@ -12,12 +12,12 @@ import {
   resetPassword,
   updateEmailOrName,
   updateProfilePic,
+  updateRoll,
 } from "../controllers/userController.js";
-import { isAuthenticate } from "../middlewares/auth.js";
+import { isAdminAuthenticate, isAuthenticate } from "../middlewares/auth.js";
 import singleUplode from "../middlewares/multer.js";
 
 const router = express.Router();
-router.route("/getAllUsers").get(getAllusers);
 router.route("/createUser").post(singleUplode,createUser);
 router.route("/LoginUser").post(loginUser);
 router.route("/logOut").get(logOutUser);
@@ -29,5 +29,9 @@ router.route("/forgetPassword").post(forgetPassword);
 router.route("/ResetPassword/:token").put(resetPassword);
 router.route("/addTOplayLIST").post(isAuthenticate, addToPlaylist);
 router.route("/removeFromPlaylist/:id").put(isAuthenticate, deleteFromList);
+
+//AdminRout
+router.route("/admin/getAllUsers").get(isAuthenticate,isAdminAuthenticate,getAllusers);
+router.route("/admin/upDateRole/:id").put(isAuthenticate,isAdminAuthenticate,updateRoll);
 
 export default router;

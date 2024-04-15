@@ -1,12 +1,24 @@
 import { catchError } from "../middlewares/chatchError.js";
 import { Course } from "../models/CourseModal.js";
+import { States } from "../models/Stats.js";
 import getDataUri from "../utils/dataUri.js";
 import ErrorHendler from "../utils/errorHendler.js";
 import cloudinary from "cloudinary";
 
 //function for get all courses..
 export const getAllCourses = catchError(async (req, res, next) => {
-  const courses = await Course.find().select("-lectures");
+  const keyword = req.query.keyword || "";
+  const category = req.query.category || "";
+  const courses = await Course.find({
+    title: {
+      $regex: keyword,
+      $options: "i",
+    },
+    category: {
+      $regex: category,
+      $options: "i",
+    },
+  }).select("-lectures");
   res.status(200).json({
     success: true,
     courses,
@@ -117,26 +129,23 @@ export const deleteCourse = catchError(async (req, res, next) => {
 });
 
 //function for delete lecture from course;
-export const deleteLecture=catchError(async(req,res,next)=>
-{
-   const {courseId,lectureId}=req.query;
-   const course = await Course.findById(courseId);
+export const deleteLecture = catchError(async (req, res, next) => {
+  const { courseId, lectureId } = req.query;
+  const course = await Course.findById(courseId);
   if (!course) return next(new ErrorHendler("Course Note found", 404));
-  const lecture=course.lectures.find((item)=>
-  {
-    if(item._id.toString()===lectureId.toString()) return item;
+  const lecture = course.lectures.find((item) => {
+    if (item._id.toString() === lectureId.toString()) return item;
   });
-  await cloudinary.v2.uploader.destroy(lecture.video.public_id,{
-    resource_type:"video"
+  await cloudinary.v2.uploader.destroy(lecture.video.public_id, {
+    resource_type: "video",
   });
 
-
- await Course.updateOne(
+  await Course.updateOne(
     { _id: courseId },
     { $pull: { lectures: { _id: lectureId } } }
   )
     .then((result) => {
-      console.log(result)
+      console.log(result);
       res.status(200).json({
         success: true,
         message: "Lecture deleted !!!",
@@ -148,9 +157,21 @@ export const deleteLecture=catchError(async(req,res,next)=>
         message: error,
       });
     });
-
-
-
-   
 });
 
+//function for change streem
+
+// Course.watch().on("change", async () => {
+//   const state = await States.find({}).sort({ createdAt: "desc" }).limit(1);
+
+//   const course = await Course.find({});
+//   let totalview = 0;
+
+//   for (let i = 0; i < course.length; i++) {
+//     totalview += course[i].views;
+//   }
+//   state[0].views = totalview;
+//   state[0].createdAt = new Date(Date.now());
+
+//   await state[0].save();
+// });
