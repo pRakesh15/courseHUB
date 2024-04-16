@@ -20,6 +20,11 @@ app.use(cors({
   methods:["GET","POST","PUT","DELETE"],
 }))
 
+app.get("/",(req,res)=>
+{
+  res.send("Jay ShreeRam")
+})
+
 app.use("/api/v1", courseRoute);
 app.use("/api/v1", userRoute);
 app.use("/api/v1", paymentRout);
