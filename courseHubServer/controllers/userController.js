@@ -284,17 +284,17 @@ export const updateRoll = catchError(async (req, res, next) => {
   }
 });
 //function of change  streem
-// User.watch().on("change",async()=>
-// {
-//   const state=await States.find({}).sort({createdAt:"desc"}).limit(1);
+User.watch().on("change",async()=>
+{
+  const state=await States.find({}).sort({createdAt:"desc"}).limit(1);
 
-//   const subscription=await User.find({"subscription.status":"Active"});
+  const subscription=await User.find({"subscription.status":"Active"});
 
-//   state[0].users=await User.countDocuments();
-//   state[0].subscription=subscription.length;
-//   state[0].createdAt=new Date(Date.now());
+  state[0].users=await User.countDocuments();
+  state[0].subscription=subscription.length;
+  state[0].createdAt=new Date(Date.now());
 
-//   await state[0].save();
+  await state[0].save();
 
 
-// })
+})

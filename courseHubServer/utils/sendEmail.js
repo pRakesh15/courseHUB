@@ -3,13 +3,13 @@ import { createTransport } from "nodemailer";
 export const sendEmail = async (to, subject, text) => {
 
   const transporter = createTransport({
-  host: 'smtp.ethereal.email',
+    host: 'smtp.ethereal.email',
     port: 587,
     auth: {
-      user: 'laverna.waters37@ethereal.email',
-        pass: 'YZMmJyrAbvrbfkfwzY'
+        user: 'maxie.boyle@ethereal.email',
+        pass: 'wq7urNaFr6R3dskpy7'
     }
-  });
+});
   // transporter.verify((error, success) => {
   //   if (error) {
   //     console.log(error);

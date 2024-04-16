@@ -161,17 +161,17 @@ export const deleteLecture = catchError(async (req, res, next) => {
 
 //function for change streem
 
-// Course.watch().on("change", async () => {
-//   const state = await States.find({}).sort({ createdAt: "desc" }).limit(1);
+Course.watch().on("change", async () => {
+  const state = await States.find({}).sort({ createdAt: "desc" }).limit(1);
 
-//   const course = await Course.find({});
-//   let totalview = 0;
+  const course = await Course.find({});
+  let totalview = 0;
 
-//   for (let i = 0; i < course.length; i++) {
-//     totalview += course[i].views;
-//   }
-//   state[0].views = totalview;
-//   state[0].createdAt = new Date(Date.now());
+  for (let i = 0; i < course.length; i++) {
+    totalview += course[i].views;
+  }
+  state[0].views = totalview;
+  state[0].createdAt = new Date(Date.now());
 
-//   await state[0].save();
-// });
+  await state[0].save();
+});
