@@ -21,7 +21,7 @@ const Naviigation = ({ url = "/", title = "Home",onClick }) => (
 );
 
 const Navbar = () => {
-  const isAuthantiate = true;
+  const isAuthantiate = false;
   const user={
     role:"admin",
   }
