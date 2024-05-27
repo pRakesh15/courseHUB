@@ -13,7 +13,6 @@ const Dashboard = () => {
           opacity={0.5}
           children={`last change was on ${String(new Date()).split("G")[0]}`}
         />
-
         <Heading
           children="Dashboard"
           ml={[0, 16]}

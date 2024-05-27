@@ -23,7 +23,7 @@ const Naviigation = ({ url = "/", title = "Home",onClick }) => (
 const Navbar = () => {
   const isAuthantiate = false;
   const user={
-    role:"admin",
+    role:"user",
   }
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [keyWord,setKeyWord]=useState('');

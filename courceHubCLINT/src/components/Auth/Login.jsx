@@ -10,7 +10,7 @@ import {
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { server, userLogin } from "../../redux/reducers/userReducer";
+import { loginUser, server } from "../../redux/reducers/userReducer.js";
 import axios from "axios";
 
 const Login = () => {
@@ -20,21 +20,38 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(userLogin(email, password));
+    dispatch(loginUser({email,password}));
   };
+
+  // const loginFunction = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const { data } = await axios.post(
+  //       `${server}/LoginUser`,
+  //       { email: email, password: password },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         withCredentials: true,
+  //       }
+  //     );
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <Container h={"80vh"} display={"flex"} justifyContent={"center"} mt={10}>
       <VStack h={"full"}>
         <Heading children={"Log in to your account"} />
-        <form
-          style={{ width: "100%" }}
-          className="mt-2"
-        >
+        <form style={{ width: "100%" }} className="mt-2">
           <Box>
             <input
               type="text"
               placeholder="Email"
+              name="email"
               className="p-3 border rounded-none border-black w-full"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -44,6 +61,7 @@ const Login = () => {
             <input
               type="password"
               placeholder="Password"
+              name="password"
               className="p-3 border rounded-none border-black w-full"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
