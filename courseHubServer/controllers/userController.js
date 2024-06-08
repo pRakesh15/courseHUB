@@ -37,13 +37,18 @@ export const createUser = catchError(async (req, res, next) => {
 //function for login user..
 export const loginUser = catchError(async (req, res, next) => {
   const { email, password } = req.body;
-  if (!email || !password)
+
+  // console.log(email,password)
+  if (!email || !password) {
     return next(new ErrorHendler("plz fill all the field", 400));
+  }
 
   const user = await User.matchPassword(email, password);
 
-  if (!user)
+  if (!user) {
     return next(new ErrorHendler("email or password is incorrect !!", 404));
+  }
+
   const username = user.name.split(" ")[0];
   sendToken(res, user, `WellCome back ${username}`, 201);
 });
@@ -284,17 +289,14 @@ export const updateRoll = catchError(async (req, res, next) => {
   }
 });
 //function of change  streem
-User.watch().on("change",async()=>
-{
-  const state=await States.find({}).sort({createdAt:"desc"}).limit(1);
+User.watch().on("change", async () => {
+  const state = await States.find({}).sort({ createdAt: "desc" }).limit(1);
 
-  const subscription=await User.find({"subscription.status":"Active"});
+  const subscription = await User.find({ "subscription.status": "Active" });
 
-  state[0].users=await User.countDocuments();
-  state[0].subscription=subscription.length;
-  state[0].createdAt=new Date(Date.now());
+  state[0].users = await User.countDocuments();
+  state[0].subscription = subscription.length;
+  state[0].createdAt = new Date(Date.now());
 
   await state[0].save();
-
-
-})
+});
