@@ -159,7 +159,7 @@ export const deleteLecture = catchError(async (req, res, next) => {
     });
 });
 
-//function for change streem
+//function for change stream
 
 Course.watch().on("change", async () => {
   const state = await States.find({}).sort({ createdAt: "desc" }).limit(1);

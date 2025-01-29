@@ -6,7 +6,7 @@ import { instant } from "../server.js";
 import crypto from "crypto";
 import { Payment } from "../models/Payment.js";
 
-//functon for  create the subscription..
+//function for  create the subscription..
 export const buySubscription = catchError(async (req, res, next) => {
   const user = await User.findById(req.user.id);
   if (user.role === "admin")
